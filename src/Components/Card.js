@@ -1,19 +1,38 @@
-import React from "react";
-
-/* 1 */
+import React, { useState } from "react";
+import cardBack from "../images/CardBack.jpg"; 
+import ReactCardFlip from "react-card-flip"; 
 const Card = ({ card }) => {
+    const [flipped, changeFlip] = useState(false);
+
+
+    const handleFlip = () => {
+        changeFlip(!flipped);
+      };
+  
   return (
     <div className="col-3 my-1">
-      {/* 2 */}
-      <img
-        className="mx-auto"
-        src={card.front}
-        height="100%"
-        width="100%"
-        key="front"
-      />
+     
+      <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
+        <img
+          className="mx-auto"
+          src={cardBack}
+          height="100%"
+          width="100%"
+          key="front"
+          onClick={() => handleFlip()}
+        />
+        <img
+          className="mx-auto"
+          src={card.front}
+          height="100%"
+          width="100%"
+          key="back"
+          onClick={() => handleFlip()}
+        />
+      </ReactCardFlip>
     </div>
   );
 };
+
 
 export default Card; /* 3 */
